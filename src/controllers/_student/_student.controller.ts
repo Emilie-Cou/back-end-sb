@@ -20,6 +20,19 @@ export class StudentController
         }
     }
 
+    @Get("classe/:idClasse")
+    getByClasse(
+        @Param("idClasse") idClasse : string
+    ) : Promise<any>
+    {
+        try {
+            return this.studentService.getByClasse(idClasse)
+        } catch (error) {
+            console.log(error);
+            return error
+        }
+    }
+
     @Get()
     getAll() : Promise<any>
     {

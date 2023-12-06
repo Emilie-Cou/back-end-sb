@@ -9,8 +9,8 @@ export class ProfEntity extends LifeTime
     @PrimaryColumn({ type : "nvarchar", length : "6", nullable : false, unique : true})
     idProf : string
 
-    @ManyToOne(() => ClasseEntity, (classe) => classe.idClasse, { cascade : ["insert", "update"] })
-    idClasse : ClasseEntity
+    @ManyToOne(() => ClasseEntity, (classe) => classe.idClasse, { cascade : ["insert", "update", "soft-remove"] })
+    classe : ClasseEntity
 
     @Column({ type : "nvarchar", length : "8", nullable : false, unique : true})
     psw : string
@@ -31,11 +31,13 @@ export class ProfEntity extends LifeTime
         const initial = this.nom.substring(0, 2)
         const randNum4 = randomInt(1000, 9999)
         this.idProf = (initial + randNum4.toString()).toUpperCase()
+        console.log(this.idProf);
     }
 
     @BeforeInsert()
     createPsw(){
         const randNum5 = randomInt(10000, 99999)
-        this.psw = (this.idClasse + randNum5.toString()).toUpperCase()
+        this.psw = (this.classe + randNum5.toString()).toUpperCase()
+        console.log(this.psw);
     }
 }

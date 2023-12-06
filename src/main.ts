@@ -5,6 +5,8 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors() // Active les cors : Cross-origin resource sharing
+
   app.useGlobalPipes(new ValidationPipe({
     whitelist : true, // Permet de garder les props présentes dans le DTO
     transform : true, // Le ValidationPipe peut transformer automatiquement les charges utiles en objets typés selon leurs classes DTO

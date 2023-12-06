@@ -35,6 +35,7 @@ import { ConnectModule } from './controllers/_connect/_connect.module';
       entities: [__dirname + "/**/*.entity.{ts, js}"],
       autoLoadEntities: true,
       synchronize: true,
+      //charset: "utf-8" //!Il le prend pas
       //logging : "all"
     }),
   ],

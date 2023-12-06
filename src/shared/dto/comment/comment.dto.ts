@@ -1,4 +1,4 @@
-import { IsDefined, IsString, Min, Max, MinLength, MaxLength } from "class-validator";
+import { IsDefined, IsString, MinLength, MaxLength } from "class-validator";
 
 export class Comment_DTO
 {

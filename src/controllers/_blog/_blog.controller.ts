@@ -20,6 +20,22 @@ export class BlogController
         }
     }
 
+    @Get("/classe/:idClasse")
+    async getOneByClassId(
+        @Param("idClasse") idClasse : string
+    ) : Promise<any>
+    {
+        try {
+            let test = await this.blogService.getAllByIdClasse(idClasse)
+            console.log(test);
+            
+            return test
+        } catch (error) {
+            console.log(error);
+            return error
+        }
+    }
+
     @Get()
     getAll() : Promise<any>
     {

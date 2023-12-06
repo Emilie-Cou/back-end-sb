@@ -8,9 +8,9 @@ export class BlogEntity extends LifeTime
     @PrimaryGeneratedColumn()
     idBlog : number
 
-    @OneToOne(() => ClasseEntity, {cascade: ["insert", "update"]})
+    @OneToOne(() => ClasseEntity, (classeEntity) => classeEntity.idClasse, {cascade: ["insert", "update"]})
     @JoinColumn()
-    idClasse : ClasseEntity
+    classe : ClasseEntity
 
     @Column({ type : "nvarchar", length : "50", nullable : false})
     titre : string

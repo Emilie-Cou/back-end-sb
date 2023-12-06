@@ -14,9 +14,18 @@ export class MsgParentService
         return await this.msgParentRepo.findOneBy({idMsg})
     }
 
+    async getAllByID(idClasse : string)
+    {
+        return await this.msgParentRepo.find({
+
+        })
+    }
+
     async getAll()
     {
-        return await this.msgParentRepo.find()
+        return await this.msgParentRepo.find({
+            
+        })
     }
 
     async addMsg(newMsg : MsgParent_DTO)
@@ -34,3 +43,4 @@ export class MsgParentService
         return await this.msgParentRepo.softDelete(idMsg)
     }
 }
+

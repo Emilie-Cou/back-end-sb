@@ -15,6 +15,16 @@ export class StudentService
         return await this.studentRepo.findOneBy({idStudent})
     }
 
+    async getByClasse(idClasse : string)
+    {
+        return await this.studentRepo.find({
+            relations : { classe : true},
+            where : { classe : {
+                idClasse : idClasse
+            }}
+        })
+    }
+
     async getAll()
     {
         return await this.studentRepo.find()

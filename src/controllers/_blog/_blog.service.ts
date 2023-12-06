@@ -14,6 +14,16 @@ export class BlogService
         return await this.blogRepo.findOneBy({idBlog})
     }
 
+    async getAllByIdClasse(idClasse : string)
+    {
+        return await this.blogRepo.find({
+            relations : { classe : true },
+            where : { classe : {
+                idClasse : idClasse
+            }}
+        })
+    }
+
     async getAll()
     {
         return await this.blogRepo.find()

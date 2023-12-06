@@ -13,7 +13,7 @@ export class BlogComEntity extends LifeTime
     idBlog : BlogEntity
 
     @ManyToOne(() => ClasseEntity, (classe) => classe.idClasse, { cascade : ["insert", "update"] })
-    idClasse : ClasseEntity
+    classe : ClasseEntity
 
     @Column({ type : "nvarchar", length : "25", nullable : false})
     prenom : string

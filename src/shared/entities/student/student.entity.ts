@@ -9,8 +9,8 @@ export class StudentEntity extends LifeTime
     @PrimaryColumn({ type : "nvarchar", length : "7", nullable : false, unique : true})
     idStudent : string
 
-    @ManyToOne(() => ClasseEntity, (classe) => classe.idClasse, { cascade : ["insert", "update"] })
-    idClasse : ClasseEntity
+    @ManyToOne(() => ClasseEntity, (classe) => classe.idClasse, { cascade : ["insert", "update", "soft-remove"] })
+    classe : ClasseEntity
 
     @Column({ type : "nvarchar", length : "9", nullable : false, unique : true})
     psw1 : string
@@ -27,7 +27,7 @@ export class StudentEntity extends LifeTime
     @Column({ type : "nvarchar", length : "100", nullable : false})
     email1 : string
 
-    @Column({ type : "nvarchar", length : "100", nullable : false})
+    @Column({ type : "nvarchar", length : "100", nullable : true})
     email2 : string
 
     @Column({ type : "nvarchar", length : "5", nullable : false})

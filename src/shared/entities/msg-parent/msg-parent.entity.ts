@@ -9,7 +9,7 @@ export class MsgParentEntity extends LifeTime
     idMsg : number
 
     @ManyToOne(() => ClasseEntity, (classe) => classe.idClasse, { cascade : ["insert", "update"] })
-    idClasse : ClasseEntity
+    classe : ClasseEntity
 
     @Column({ type : "nvarchar", length : "25", nullable : false})
     prenom : string
