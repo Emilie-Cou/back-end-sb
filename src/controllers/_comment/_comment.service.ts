@@ -16,7 +16,11 @@ export class CommentService
 
     async getAll()
     {
-        return await this.commentRepo.find()
+        return await this.commentRepo.find({
+            order: {
+                id: "DESC",
+            },
+        })
     }
 
     async addComment(newComment : Comment_DTO)

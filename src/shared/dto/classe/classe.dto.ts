@@ -1,4 +1,5 @@
-import { IsDefined, IsString, Max, IsOptional, MaxLength, Length } from "class-validator";
+import { IsDefined, IsString, IsOptional, MaxLength, Length } from "class-validator";
+import { IsNull } from "typeorm";
 
 export class Classe_DTO
 {
@@ -6,6 +7,11 @@ export class Classe_DTO
     @IsOptional()
     @Length(3)
     idClasse : string
+
+    @IsString()
+    @IsOptional()
+    @Length(6)
+    idProf : string
 
     @IsDefined()
     @IsString()

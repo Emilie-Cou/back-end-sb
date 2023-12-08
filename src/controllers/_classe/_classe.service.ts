@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Classe_DTO } from 'src/shared/dto/classe/classe.dto';
 import { ClasseEntity } from 'src/shared/entities/classe/classe.entity';
-import { Repository } from 'typeorm';
+import { In, Not, Repository } from 'typeorm';
 
 @Injectable()
 export class ClasseService
@@ -11,12 +11,23 @@ export class ClasseService
 
     async getOne(idClasse : string)
     {
-        return await this.classeRepo.findOneBy({idClasse})
+        return await this.classeRepo.findOne({
+            where: {
+                idClasse
+            },
+            //! A clarifier
+            // relations: {
+            //     prof : true
+            // }
+        })
     }
 
     async getAll()
     {
-        return await this.classeRepo.find()
+        return await this.classeRepo.find({
+            where: {idClasse: Not(In(["DIR" , "SEC1", "SEC2"])),}
+            
+        })
     }
 
     async addClasse(newClasse : Classe_DTO)

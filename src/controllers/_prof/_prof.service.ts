@@ -17,7 +17,11 @@ export class ProfService
 
     async getAll()
     {
-        return await this.profRepo.find()
+        return await this.profRepo.find({
+            relations: {
+                classe: true
+            }
+        })
     }
 
     async addProf(newProf : Prof_DTO)

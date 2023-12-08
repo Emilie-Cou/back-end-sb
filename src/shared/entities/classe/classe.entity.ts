@@ -1,6 +1,6 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
 import { LifeTime } from "../lifeTime.entity";
-// import { ProfEntity } from "../prof/prof.entity";
+import { ProfEntity } from "../prof/prof.entity";
 
 @Entity("classe")
 export class ClasseEntity extends LifeTime
@@ -8,9 +8,12 @@ export class ClasseEntity extends LifeTime
     @PrimaryColumn({ type : "nvarchar", length : "4", nullable : false, unique : true})
     idClasse : string
 
+    //! A clarifier
     // @OneToOne(() => ProfEntity, { cascade : ["insert", "update"] })
-    @Column()
-    idProf : string
+    // @Column({ type : "nvarchar", length : "6", nullable : false})
+    // idProf : string
+    @OneToMany(() => ProfEntity, (prof) => prof.idProf, { cascade : ["insert", "update", "soft-remove"] })
+    prof : ProfEntity
 
     @Column({ type : "nvarchar", length : "20", nullable : false})
     nomClasse : string
@@ -24,7 +27,6 @@ export class ClasseEntity extends LifeTime
     @Column({ type : "nvarchar", length : "100", nullable : true})
     img : string
 }
-
 
 
 //! une photo a un seul user
