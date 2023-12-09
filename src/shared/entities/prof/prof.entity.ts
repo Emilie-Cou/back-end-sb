@@ -1,4 +1,4 @@
-import { BeforeInsert, Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
 import { LifeTime } from "../lifeTime.entity";
 import { ClasseEntity } from "../classe/classe.entity";
 import { randomInt } from "crypto";
@@ -9,8 +9,9 @@ export class ProfEntity extends LifeTime
     @PrimaryColumn({ type : "nvarchar", length : "6", nullable : false, unique : true})
     idProf : string
 
-    @ManyToOne(() => ClasseEntity, (classe) => classe.idClasse, { cascade : ["insert", "update", "soft-remove"] })
-    classe : ClasseEntity
+    @OneToOne(() => ClasseEntity, (classe) => classe.idClasse, { cascade: ["insert", "update", "soft-remove"] })
+    @JoinColumn()
+    classe: ClasseEntity
 
     @Column({ type : "nvarchar", length : "8", nullable : false, unique : true})
     psw : string

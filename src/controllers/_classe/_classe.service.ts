@@ -15,18 +15,21 @@ export class ClasseService
             where: {
                 idClasse
             },
-            //! A clarifier
-            // relations: {
-            //     prof : true
-            // }
+            relations: {
+                prof : true
+            }
         })
     }
 
     async getAll()
     {
         return await this.classeRepo.find({
-            where: {idClasse: Not(In(["DIR" , "SEC1", "SEC2"])),}
-            
+            where: {
+                idClasse: Not(In(["DIR" , "SEC1", "SEC2"])),
+            },
+            relations: {
+                prof: true
+            }
         })
     }
 

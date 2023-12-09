@@ -1,16 +1,24 @@
-//TODO GESTION DES IMAGES
-// à voir avec le front
-// new table? crud? voir doc...
+//! une photo a un seul user
+//! entity photo
+    //? @ManyToOne(() => User, (user) => user.photos)
+    //? user: User
+//* Many va vers id
+    //? @ManyToOne(() => TypeRegimeEntity, (typeRegime) => typeRegime.id, { cascade : ["insert", "update"] })
+    //? type : TypeRegimeEntity
+//! photo = student
+//- photo = prof
 
-//TODO GESTION DES GETONE
-// à voir avec le front
-// quel id? query?
+//! un user a plusieurs photos
+//! entity user
+    //? @OneToMany(() => Photo, (photo) => photo.user)
+    //? photos: Photo[]
+//* One va vers many
+    //? @OneToMany(() => CommandEntity, (command) => command.type, { cascade : ["insert", "update"] })
+    //? commands : CommandEntity
+//! user = classe
+//- user = classe
+//* ManyToOne peut etre sans onetomany mais pas l'inverse
 
-//TODO REMPLIR LA DB
-// classe -> prof -> student
-// Classe : idClasse=init+ 2dernière; reste à la main; idProf?
-// Prof : idClasse?; reste à la main
-// Student : idClasse; reste à la main
 
-//---------------------------------------------------------------------------------//
-
+/* 1 prof a 1 classe
+1 classe peut avoir 2 profs */
