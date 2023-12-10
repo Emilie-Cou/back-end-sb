@@ -19,8 +19,13 @@ export class ProfService
     {
         return await this.profRepo.find({
             relations: {
-                classe: true
-            }
+                classe: true,
+            },
+            order: {
+                classe : {
+                    idClasse: "ASC",
+                },
+            },
         })
     }
 
