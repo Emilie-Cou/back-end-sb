@@ -4,7 +4,7 @@ export class Comment_DTO
 {
     @IsDefined()
     @IsString()
-    @MinLength(5)
+    @MinLength(3)
     @MaxLength(25)
     prenom : string
 
