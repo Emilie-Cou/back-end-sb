@@ -17,20 +17,30 @@ export class MsgParentService
     async getAllByID(idClasse : string)
     {
         return await this.msgParentRepo.find({
-
+            relations: {
+                classe: true,
+            },
+            where: {
+                classe: {
+                    idClasse
+                },
+            },
+            order: {
+                idMsg: "DESC"
+            }
         })
     }
 
-    async getAll()
-    {
-        return await this.msgParentRepo.find({
+    // async getAll()
+    // {
+    //     return await this.msgParentRepo.find({
             
-        })
-    }
+    //     })
+    // }
 
     async addMsg(newMsg : MsgParent_DTO)
     {
-        return  await this.msgParentRepo.save(newMsg)
+        return await this.msgParentRepo.save(newMsg)
     }
 
     async updateMsg(idMsg : number, newMsg : MsgParent_DTO)

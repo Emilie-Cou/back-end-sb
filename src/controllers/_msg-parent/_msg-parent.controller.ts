@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, ValidationPipe } from '@nestjs/common';
 import { MsgParentService } from './_msg-parent.service';
-import { MsgParent_DTO } from 'src/shared/dto/msg-parent/msg-parent.dto';
+import { IdClasseMsgParent_DTO, MsgParent_DTO } from 'src/shared/dto/msg-parent/msg-parent.dto';
 
 @Controller('msg-parent')
 export class MsgParentController
@@ -20,18 +20,20 @@ export class MsgParentController
         }
     }
 
-    @Get()
-    getAll() : Promise<any>
+    @Post()
+    getAllByID(
+        @Body(ValidationPipe) idClasse : IdClasseMsgParent_DTO
+    ) : Promise<any>
     {
         try {
-            return this.msgParentService.getAll()            
+            return this.msgParentService.getAllByID(idClasse.idClasse)            
         } catch (error) {
             console.log(error);
             return error
         }
     }
 
-    @Post()
+    @Post("/msg")
     addMsg(
         @Body(ValidationPipe) newMsg : MsgParent_DTO
     ) : Promise<any>
